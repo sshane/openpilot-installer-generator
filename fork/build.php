@@ -34,6 +34,7 @@ if ($branch != "") {
 $num_nulls_append = NUM_LOADING_CHARS - iconv_strlen($loading_msg);  # keep size the same
 $installer_binary = str_replace(PI, $loading_msg . str_repeat("\0", $num_nulls_append), $installer_binary);
 
+# Now download
 header("Content-Type: application/octet-stream");
 header("Content-Length: " . iconv_strlen($installer_binary));
 header("Content-Disposition: attachment; filename=installer_openpilot");
