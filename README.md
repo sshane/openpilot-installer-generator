@@ -21,10 +21,10 @@ Defined in the [index.php](fork/index.php) file, aliases allow for more quickly 
 To install [dragonpilot](https://github.com/dragonpilot-community/dragonpilot), you can simply use the following URL which uses the `devel-i18n` branch by default: https://smiskol.com/fork/dp
 
 ## Misc
-#### Custom loading message without branch
+### Custom loading message without branch
 If you want to specify a custom loading message but use the default branch (not passing in a branch), you can pass an underscore for the branch. For example: https://smiskol.com/fork/shane/_/some%20additions%20or%20something
 
-#### Source code to build the custom installer
+### Source code to build the custom installer
 [Here's the source code for the custom installer binary.](/misc/installer_source.c)
 
 [And here's the diff and a branch you can check out to build it on your EON/C2.](https://github.com/ShaneSmiskol/openpilot/compare/6f703eaf4e0de0cbd61d30cb8468004d2949298f...ShaneSmiskol:installer)
