@@ -13,6 +13,6 @@ Where `username` is the required username of the fork, `branch` is the branch to
 - If `loading_msg` is left blank, then the installer will display `Installing {username}` unless the fork has a custom loading message (check the index.php for aliases).
 - While `username` is required if you visit the website on your desktop, if you `wget` the site or enter just `/fork` during set up, it will install the release2 branch of stock openpilot.
 
-**Example:** `https://smiskol.com/fork/shanesmiskol` installs the Stock Additions fork.
+**Example:** https://smiskol.com/fork/shanesmiskol installs the Stock Additions fork.
 
 Idea by nelsonjchen on the [openpilot Discord](https://discord.comma.ai/)!
