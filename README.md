@@ -23,5 +23,7 @@ To install [dragonpilot](https://github.com/dragonpilot-community/dragonpilot), 
 ## Misc
 If you want to specify a custom loading message but use the default branch (not passing in a branch), you can pass an underscore for the branch. For example: https://smiskol.com/fork/shane/_/some%20additions%20or%20something
 
+[Here's the source code for the custom installer binary.](/misc/installer_source.c)
+
 ---
 <sub>Idea by nelsonjchen on the [openpilot Discord](https://discord.comma.ai/)!</sub>
