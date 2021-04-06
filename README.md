@@ -27,5 +27,7 @@ If you want to specify a custom loading message but use the default branch (not 
 #### Source code to build the custom installer
 [Here's the source code for the custom installer binary.](/misc/installer_source.c)
 
+[And here's the diff and a branch you can check out to build it on your EON/C2.](https://github.com/ShaneSmiskol/openpilot/compare/6f703eaf4e0de0cbd61d30cb8468004d2949298f...ShaneSmiskol:installer)
+
 ---
 <sub>Idea by nelsonjchen on the [openpilot Discord](https://discord.comma.ai/)!</sub>
