@@ -31,7 +31,7 @@ if ($branch != "") {
 }
 
 # Replace loading msg
-$num_nulls_append = NUM_LOADING_CHARS - mb_strlen($loading_msg);  # keep size the same
+$num_nulls_append = NUM_LOADING_CHARS - strlen($loading_msg);  # keep size the same
 $installer_binary = str_replace(PI, $loading_msg . str_repeat("\0", $num_nulls_append), $installer_binary);
 
 # Now download

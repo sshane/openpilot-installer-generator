@@ -26,20 +26,22 @@ $supplied_loading_msg = $loading_msg != "";  # to print secret message
 if (in_array($username, array("dragonpilot", "dp"))) {
     $username = "dragonpilot-community";
     if ($branch == "") $branch = "devel-i18n";  # default is normally docs
-    $loading_msg = "dragonpilot";
+    if ($loading_msg == "") $loading_msg = "dragonpilot";
 }
 if (in_array($username, array("stock", "commaai"))) {
     $username = "commaai";
     if ($branch == "") $branch = DEFAULT_STOCK_BRANCH;
-    $loading_msg = "openpilot";
+    if ($loading_msg == "") $loading_msg = "openpilot";
 }
 if (in_array($username, array("shane", "sa", "shanesmiskol"))) {
     $username = "shanesmiskol";
-    $loading_msg = "Stock Additions";
+    if ($loading_msg == "") $loading_msg = "Stock Additions";
 }
 
 if ($loading_msg == "") {  # if not an alias with custom msg and not specified use username
     $loading_msg = $username;
+} else {  # make sure we encode spaces, neos setup doesn't like spaces (branch and username shouldn't have spaces)
+	$loading_msg = str_replace(" ", "%20", $loading_msg);
 }
 
 if (IS_NEOS) {  # if NEOS or wget serve file immediately. commaai/stock if no username provided

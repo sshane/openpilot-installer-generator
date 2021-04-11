@@ -18,7 +18,9 @@ Where `username` is the required username of the fork, `branch` is the branch to
 ## Aliases
 Defined in the [index.php](fork/index.php) file, aliases allow for more quickly installing a fork with a long username.
 
-To install [dragonpilot](https://github.com/dragonpilot-community/dragonpilot), you can simply use the following URL which uses the `devel-i18n` branch by default: https://smiskol.com/fork/dp
+- To install [dragonpilot](https://github.com/dragonpilot-community/dragonpilot), you can simply use the following URL which uses the `devel-i18n` branch by default: https://smiskol.com/fork/dp
+- To install [Stock Additions](https://github.com/shanesmiskol/openpilot), my fork, enter the URL: https://smiskol.com/fork/shane
+- To install [stock openpilot](https://github.com/commaai/openpilot), enter the URL: https://smiskol.com/fork/commaai or just https://smiskol.com/fork
 
 ## Misc
 ### Custom loading message without branch
