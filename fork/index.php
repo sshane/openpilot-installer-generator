@@ -74,8 +74,7 @@ echo '</br></br><a href="' . BASE_DIR . '"><h1 style="color: #30323D;">🍴 cust
 if ($username == "") {
     echo "</br><h2>Enter this URL in NEOS during setup with the format: <a href='" . BASE_DIR . "/shanesmiskol/stock_additions'><span>" . WEBSITE_URL . BASE_DIR . "/username/branch</span></a></h2>";
     echo "<h3>Or complete the request on your desktop to download a custom installer.</h3>";
-    echo '<a href="https://github.com/ShaneSmiskol/openpilot-installer-generator">Installer Generator GitHub Repo</a>';
-	
+    echo '<h3 style="position: absolute; bottom: 0; left: 0; width: 100%; text-align: center;"><a href="https://github.com/ShaneSmiskol/openpilot-installer-generator" style="color: 30323D;">💾 Installer Generator GitHub Repo</a></h3>';
     exit;
 }
 
