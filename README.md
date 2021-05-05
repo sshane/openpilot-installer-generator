@@ -22,7 +22,7 @@ Defined in the [index.php](fork/index.php) file, aliases allow for more quickly 
 - To install [Stock Additions](https://github.com/shanesmiskol/openpilot), my fork, enter the URL: https://smiskol.com/fork/shane
 - To install [stock openpilot](https://github.com/commaai/openpilot), enter the URL: https://smiskol.com/fork/commaai or just https://smiskol.com/fork
 
-If you are a fork developer, have a repository that is not named `openpilot`, and want to allow users to install with this tool, you can take advantage of GitHub's internal compatbility aliasing and just temporaily rename your fork to `openpilot` and rename it back. You can see an example of this in action with "https://github.com/dragonpilot-community/openpilot" redirecting to "https://github.com/dragonpilot-community/openpilot". 
+If you are a fork developer, have a repository that is not named `openpilot`, and want to allow users to install with this tool, you can take advantage of GitHub's internal compatibility aliasing and just temporaily rename your fork to `openpilot` and rename it back. You can see an example of this in action with "https://github.com/dragonpilot-community/openpilot" redirecting to "https://github.com/dragonpilot-community/openpilot". 
 
 ## Misc
 ### Custom loading message without branch
