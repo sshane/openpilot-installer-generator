@@ -21,23 +21,32 @@ $branch = substr(trim($branch), 0, 250);
 $branch = $branch == "_" ? "" : $branch;
 $loading_msg = substr(trim($loading_msg), 0, 250);
 $supplied_loading_msg = $loading_msg != "";  # to print secret message
+$repo_name = "openpilot";  # TODO: repo name not yet supported for installation
 
-# Aliases
-if (in_array($username, array("dragonpilot", "dp"))) {
-    $username = "dragonpilot-community";
-    if ($branch == "") $branch = "devel-i18n";  # default is normally docs
-    if ($loading_msg == "") $loading_msg = "dragonpilot";
-}
-if (in_array($username, array("stock", "commaai"))) {
-    $username = "commaai";
-    if ($branch == "") $branch = DEFAULT_STOCK_BRANCH;
-    if ($loading_msg == "") $loading_msg = "openpilot";
-}
-if (in_array($username, array("shane", "sa", "shanesmiskol"))) {
-    $username = "shanesmiskol";
-    if ($loading_msg == "") $loading_msg = "Stock Additions";
+class Alias {
+    public $name, $default_branch, $aliases, $repo, $loading_msg;
+    public function __construct($name, $default_branch, $aliases, $repo, $loading_msg) {
+        $this->name = $name;  # actual GitHub username
+        $this->default_branch = $default_branch;
+        $this->aliases = $aliases;
+        $this->repo = $repo;  # name of actual repo
+        $this->loading_msg = $loading_msg;
+    }
 }
 
+# Handle aliases
+$aliases = [new Alias("dragonpilot-community", "devel-i18n", ["dragonpilot", "dp"], "", "dragonpilot"),
+            new Alias("commaai", DEFAULT_STOCK_BRANCH, ["stock", "commaai"], "", "openpilot"),
+            new Alias("sshane", "stock_additions", ["shane", "smiskol", "sa", "sshane"], "", "Stock Additions")];
+foreach ($aliases as $al) {
+    if (in_array($username, $al->aliases)) {
+        $username = $al->name;
+        if ($branch == "") $branch = $al->default_branch;  # if unspecified, use default
+        if ($loading_msg == "") $loading_msg = $al->loading_msg;
+        if ($al->repo != "") $repo_name = $al->repo;  # in case the fork's name isn't openpilot and redirection doesn't work
+        break;
+    }
+}
 if ($loading_msg == "") {  # if not an alias with custom msg and not specified use username
     $loading_msg = $username;
 } else {  # make sure we encode spaces, neos setup doesn't like spaces (branch and username shouldn't have spaces)
@@ -70,19 +79,19 @@ button:active {border-radius: 4px; border: 5px; padding: 10px 12px; box-shadow:0
 </head>';
 
 echo '</br></br><a href="' . BASE_DIR . '"><h1 style="color: #30323D;">🍴 custom openpilot fork installer generator-inator 🍴</h1></a>';
+echo '<h3 style="position: absolute; bottom: 0; left: 0; width: 100%; text-align: center;"><a href="https://github.com/ShaneSmiskol/openpilot-installer-generator" style="color: 30323D;">💾 Installer Generator GitHub Repo</a></h3>';
 
 if ($username == "") {
     echo "</br><h2>Enter this URL in NEOS during setup with the format: <a href='" . BASE_DIR . "/shanesmiskol/stock_additions'><span>" . WEBSITE_URL . BASE_DIR . "/username/branch</span></a></h2>";
     echo "<h3>Or complete the request on your desktop to download a custom installer.</h3>";
-    echo '<h3 style="position: absolute; bottom: 0; left: 0; width: 100%; text-align: center;"><a href="https://github.com/ShaneSmiskol/openpilot-installer-generator" style="color: 30323D;">💾 Installer Generator GitHub Repo</a></h3>';
     exit;
 }
 
-echo '<h3>Given fork username: <a href="https://github.com/' . $username . '/openpilot">' . $username . '</a></h3>';
+echo '<h3>Given fork username: <a href="https://github.com/' . $username . '/' . $repo_name . '">' . $username . '</a></h3>';
 
 
 if ($branch != "") {
-    echo '<h3>Given branch: <a href="https://github.com/'.$username.'/openpilot/tree/'.$branch.'">' . $branch . '</a></h3>';
+    echo '<h3>Given branch: <a href="https://github.com/'.$username.'/' . $repo_name . '/tree/'.$branch.'">' . $branch . '</a></h3>';
 } else {
     echo '<h3>❗ No branch supplied, git will use default GitHub branch ❗</h3>';
 }
