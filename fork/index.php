@@ -9,6 +9,20 @@ define("DEFAULT_STOCK_BRANCH", "release2");
 define("WEBSITE_URL", "https://smiskol.com");
 define("BASE_DIR", "/fork");
 
+function logData() {
+    global $url;
+    global $username;
+    global $branch;
+    date_default_timezone_set('America/Chicago');
+    $data = array("IP" => $_SERVER['REMOTE_ADDR'], "url" => $url, "username" => $username, "branch" => $branch, "is_neos" => IS_NEOS, "user_agent" => USER_AGENT, "date" => date("Y-m-d_H:i:s",time()));
+
+    $data = json_encode($data);
+
+    $fp = fopen("log.txt", "a");
+    fwrite($fp, $data."\n");
+    fclose($fp);
+}
+
 $url = "/";
 if (array_key_exists("url", $_GET)) {
     $url = $_GET["url"];
@@ -52,6 +66,8 @@ if ($loading_msg == "") {  # if not an alias with custom msg and not specified u
 } else {  # make sure we encode spaces, neos setup doesn't like spaces (branch and username shouldn't have spaces)
 	$loading_msg = str_replace(" ", "%20", $loading_msg);
 }
+
+logData();
 
 if (IS_NEOS) {  # if NEOS or wget serve file immediately. commaai/stock if no username provided
     if ($username == "") {
