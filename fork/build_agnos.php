@@ -1,14 +1,16 @@
 <?php
 # Constants
-define("E", "271828182845904523536028747135266249775724709369995957496696762772407663035354759457138217852516642742746639193200305992181741359662904357290033429526059563073813232862794349076323382988075319525101901157383418793070215408914993488416750924476146066808226");  # placeholder for username
-define("PI", "314159265358979323846264338327950288419716939937510582097494459230781640628620899862803482534211706798214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196442881097566593344612847564823378678316527120190914564");
+define("E", "271828182845904523536028747135266249775");  # placeholder for username
+define("PI", "3141592653589793238462643383");  # placeholder for loading msg
+define("GOLDEN", "1618033988749894848204586834");  # placeholder for branch
 define("NUM_USERNAME_CHARS", mb_strlen(E));
 define("NUM_LOADING_CHARS", mb_strlen(PI));
+define("NUM_BRANCH_CHARS", mb_strlen(GOLDEN));
 define("BRANCH_START_STR", "--depth=1 openpilot");
 
-$installer_binary = file_get_contents(getcwd() . "/installer_openpilot_custom");  # load the unmodified installer
+$installer_binary = file_get_contents(getcwd() . "/installer_openpilot_agnos");  # load the unmodified installer
 
-$username = $_GET["username"];  # might want to make sure these are coming from index.php and not anyone injecting random values
+$username = $_GET["username"];
 $branch = $_GET["branch"];
 $loading_msg = $_GET["loading_msg"];
 

@@ -3,7 +3,8 @@ error_reporting(E_ALL ^ E_WARNING);
 
 # Constants
 define("USER_AGENT", $_SERVER['HTTP_USER_AGENT']);
-define("IS_NEOS", (str_contains(USER_AGENT, "Wget") or str_contains(USER_AGENT, "NEOSSetup")));
+define("IS_NEOS", str_contains(USER_AGENT, "NEOSSetup"));
+define("IS_AGNOS", (str_contains(USER_AGENT, "Wget") or str_contains(USER_AGENT, "AGNOSSetup")));
 define("DEFAULT_STOCK_BRANCH", "release2");
 
 define("WEBSITE_URL", "https://smiskol.com");
@@ -30,10 +31,10 @@ if (array_key_exists("url", $_GET)) {
 
 list($username, $branch, $loading_msg) = explode("/", $url);  # todo: clip these strings at the max length in index (to show up on the webpage)
 
-$username = substr(strtolower($username), 0, 250);  # 5 less than max
-$branch = substr(trim($branch), 0, 250);
+$username = substr(strtolower($username), 0, 38);  # max GH username length - 1
+$branch = substr(trim($branch), 0, 250);  # 5 less than max
 $branch = $branch == "_" ? "" : $branch;
-$loading_msg = substr(trim($loading_msg), 0, 250);
+$loading_msg = substr(trim($loading_msg), 0, 38);
 $supplied_loading_msg = $loading_msg != "";  # to print secret message
 $repo_name = "openpilot";  # TODO: repo name not yet supported for installation
 
@@ -69,13 +70,14 @@ if ($loading_msg == "") {  # if not an alias with custom msg and not specified u
 
 logData();
 
-if (IS_NEOS) {  # if NEOS or wget serve file immediately. commaai/stock if no username provided
+if (IS_NEOS or IS_AGNOS) {  # if NEOS or wget serve file immediately. commaai/stock if no username provided
     if ($username == "") {
         $username = "commaai";
         $branch = DEFAULT_STOCK_BRANCH;
         $loading_msg = "openpilot";
     }
-    header("Location: " . BASE_DIR . "/build.php?username=" . $username . "&branch=" . $branch . "&loading_msg=" . $loading_msg);
+    $build_script = IS_AGNOS ? "/build_neos.php" : "/build_agnos.php";
+    header("Location: " . BASE_DIR . $build_script . "?username=" . $username . "&branch=" . $branch . "&loading_msg=" . $loading_msg);
     return;
 }
 
