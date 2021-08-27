@@ -8,14 +8,14 @@ define("IS_AGNOS", (str_contains(USER_AGENT, "Wget") or str_contains(USER_AGENT,
 define("DEFAULT_STOCK_BRANCH", "release2");
 
 define("WEBSITE_URL", "https://smiskol.com");
-define("BASE_DIR", "/fork");
+define("BASE_DIR", "/" . basename(__DIR__));
 
 function logData() {
     global $url;
     global $username;
     global $branch;
     date_default_timezone_set('America/Chicago');
-    $data = array("IP" => $_SERVER['REMOTE_ADDR'], "url" => $url, "username" => $username, "branch" => $branch, "is_neos" => IS_NEOS, "user_agent" => USER_AGENT, "date" => date("Y-m-d_H:i:s",time()));
+    $data = array("IP" => $_SERVER['REMOTE_ADDR'], "url" => $url, "username" => $username, "branch" => $branch, "is_neos" => IS_NEOS, "is_agnos" => IS_AGNOS, "user_agent" => USER_AGENT, "date" => date("Y-m-d_H:i:s",time()));
 
     $data = json_encode($data);
 
@@ -97,11 +97,12 @@ button:active {border-radius: 4px; border: 5px; padding: 10px 12px; box-shadow:0
 </head>';
 
 echo '</br></br><a href="' . BASE_DIR . '"><h1 style="color: #30323D;">🍴 custom openpilot fork installer generator-inator 🍴</h1></a>';
-echo '<h3 style="position: absolute; bottom: 0; left: 0; width: 100%; text-align: center;"><a href="https://github.com/ShaneSmiskol/openpilot-installer-generator" style="color: 30323D;">💾 Installer Generator GitHub Repo</a></h3>';
+echo '<h3 style="position: absolute; bottom: 0; left: 0; width: 100%; text-align: center;"><a href="https://github.com/sshane/openpilot-installer-generator" style="color: 30323D;">💾 Installer Generator GitHub Repo</a></h3>';
 
 if ($username == "") {
-    echo "</br><h2>Enter this URL in NEOS during setup with the format: <a href='" . BASE_DIR . "/shanesmiskol/stock_additions'><span>" . WEBSITE_URL . BASE_DIR . "/username/branch</span></a></h2>";
-    echo "<h3>Or complete the request on your desktop to download a custom installer.</h3>";
+    echo "</br><h2>Enter this URL on your device during setup with the format:</h2>";
+    echo "<h2><a href='" . BASE_DIR . "/sshane/stock_additions'><span>" . WEBSITE_URL . BASE_DIR . "/username/branch</span></a></h2>";
+    echo "</br><h3>Or complete the request on your desktop to download a custom installer.</h3>";
     exit;
 }
 
@@ -123,7 +124,7 @@ echo '<html>
         <form method="post">
         <button class="button" name="download">Download Custom Installer Binary</button>
     </form>
-    <h5>Or enter this URL on the setup screen in NEOS.</h5>
+    <h5>Or enter this URL on the setup screen on your device.</h5>
     </body>
 </html>';
 
