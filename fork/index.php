@@ -70,7 +70,7 @@ if ($loading_msg == "") {  # if not an alias with custom msg and not specified u
 
 logData();
 
-$build_script = IS_AGNOS ? "/build_agnos.php" : "/build_neos.php";
+$build_script = IS_NEOS ? "/build_neos.php" : "/build_agnos.php";
 if (IS_NEOS or IS_AGNOS) {  # if NEOS or wget serve file immediately. commaai/stock if no username provided
     if ($username == "") {
         $username = "commaai";
@@ -96,10 +96,11 @@ button:active {border-radius: 4px; border: 5px; padding: 10px 12px; box-shadow:0
 <link rel="icon" type="image/x-icon" href="' . BASE_DIR . '/favicon.ico">
 </head>';
 
-echo '</br></br><a href="' . BASE_DIR . '"><h1 style="color: #30323D;">🍴 custom openpilot fork installer generator-inator 🍴</h1></a>';
+echo '</br></br><a href="' . BASE_DIR . '"><h1 style="color: #30323D;">🍴 openpilot fork installer generator-inator 🍴</h1></a>';
 echo '<h3 style="position: absolute; bottom: 0; left: 0; width: 100%; text-align: center;"><a href="https://github.com/sshane/openpilot-installer-generator" style="color: 30323D;">💾 Installer Generator GitHub Repo</a></h3>';
 
 if ($username == "") {
+    echo '<h3 style="color: #30323D;">🚨 now supports comma three! 🚨<h3>';
     echo "</br><h2>Enter this URL on your device during setup with the format:</h2>";
     echo "<h2><a href='" . BASE_DIR . "/sshane/stock_additions'><span>" . WEBSITE_URL . BASE_DIR . "/username/branch</span></a></h2>";
     echo "</br><h3>Or complete the request on your desktop to download a custom installer.</h3>";
@@ -122,14 +123,19 @@ if ($loading_msg != "" and $supplied_loading_msg) {
 echo '<html>
     <body>
         <form method="post">
-        <button class="button" name="download">Download Custom Installer Binary</button>
+        <button class="button" name="download_neos">Download Android Installer Binary</button>
+        <button class="button" name="download_agnos">Download AGNOS Installer Binary</button>
     </form>
     <h5>Or enter this URL on the setup screen on your device.</h5>
     </body>
 </html>';
 
-if(array_key_exists('download', $_POST)) {
-    header("Location: " . BASE_DIR . $build_script . "?username=" . $username . "&branch=" . $branch . "&loading_msg=" . $loading_msg);
+if(array_key_exists('download_neos', $_POST)) {
+    header("Location: " . BASE_DIR . "/build_neos.php?username=" . $username . "&branch=" . $branch . "&loading_msg=" . $loading_msg);
+    exit;
+}
+if(array_key_exists('download_agnos', $_POST)) {
+    header("Location: " . BASE_DIR . "/build_agnos.php?username=" . $username . "&branch=" . $branch . "&loading_msg=" . $loading_msg);
     exit;
 }
 ?>
