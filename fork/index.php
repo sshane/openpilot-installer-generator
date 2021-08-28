@@ -103,7 +103,7 @@ echo '</br></br><a href="' . BASE_DIR . '"><h1 style="color: #30323D;">🍴 open
 echo '<h3 style="position: absolute; bottom: 0; left: 0; width: 100%; text-align: center;"><a href="https://github.com/sshane/openpilot-installer-generator" style="color: 30323D;">💾 Installer Generator GitHub Repo</a></h3>';
 
 if ($username == "") {
-    echo '<h3 style="color: #30323D;">🚨 now supports comma three! 🚨<h3>';
+    echo '<h3 style="color: #30323D;">🎉 now supports comma three! 🎉<h3>';
     echo "</br><h2>Enter this URL on your device during setup with the format:</h2>";
     echo "<h2><a href='" . BASE_DIR . "/sshane/stock_additions'><span>" . WEBSITE_URL . BASE_DIR . "/username/branch</span></a></h2>";
     echo "</br><h3>Or complete the request on your desktop to download a custom installer.</h3>";
