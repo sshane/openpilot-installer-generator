@@ -31,8 +31,8 @@ If you are a fork developer, have a repository that is not named `openpilot`, an
 If you want to specify a custom loading message but use the default branch (not passing in a branch), you can pass an underscore for the branch. For example: https://smiskol.com/fork/shane/_/some%20additions%20or%20something
 
 ### Source code to build the custom installer
-- [Source code for NEOS installer](/misc/installer_source_neos.c)
-- [Source code for AGNOS installer](/misc/installer_source_agnos.cc)
+- [Source code for NEOS installer](/source/installer_source_neos.c)
+- [Source code for AGNOS installer](/source/installer_source_agnos.cc)
 
 ---
 Idea by [nelsonjchen](https://github.com/nelsonjchen) on the [openpilot Discord](https://discord.comma.ai/)!
