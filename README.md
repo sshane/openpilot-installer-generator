@@ -29,7 +29,7 @@ If you are a fork developer, have a repository that is not named `openpilot`, an
 If you want to specify a custom loading message but use the default branch (not passing in a branch), you can pass an underscore for the branch. For example: https://smiskol.com/fork/shane/_/some%20additions%20or%20something
 
 ### Source code to build the custom installer
-[Here's the source code for the custom installer binary.](/misc/installer_source_android.c)
+[Here's the source code for the custom installer binary.](/misc/installer_source_neos.c)
 
 [And here's the diff and a branch you can check out to build it on your EON/C2.](https://github.com/sshane/openpilot/compare/6f703eaf4e0de0cbd61d30cb8468004d2949298f...sshane:installer)
 

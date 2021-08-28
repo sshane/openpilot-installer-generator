@@ -6,7 +6,7 @@ define("NUM_USERNAME_CHARS", mb_strlen(E));
 define("NUM_LOADING_CHARS", mb_strlen(PI));
 define("BRANCH_START_STR", "--depth=1 openpilot");
 
-$installer_binary = file_get_contents(getcwd() . "/installer_openpilot_android");  # load the unmodified installer
+$installer_binary = file_get_contents(getcwd() . "/installer_openpilot_neos");  # load the unmodified installer
 
 $username = $_GET["username"];  # might want to make sure these are coming from index.php and not anyone injecting random values
 $branch = $_GET["branch"];
