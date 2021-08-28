@@ -31,10 +31,10 @@ if (array_key_exists("url", $_GET)) {
 
 list($username, $branch, $loading_msg) = explode("/", $url);  # todo: clip these strings at the max length in index (to show up on the webpage)
 
-$username = substr(strtolower($username), 0, 38);  # max GH username length - 1
-$branch = substr(trim($branch), 0, 250);  # 5 less than max
+$username = substr(strtolower($username), 0, 39);  # max GH username length
+$branch = substr(trim($branch), 0, 255);  # max GH branch
 $branch = $branch == "_" ? "" : $branch;
-$loading_msg = substr(trim($loading_msg), 0, 38);
+$loading_msg = substr(trim($loading_msg), 0, 39);
 $supplied_loading_msg = $loading_msg != "";  # to print secret message
 $repo_name = "openpilot";  # TODO: repo name not yet supported for installation
 
