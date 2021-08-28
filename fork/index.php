@@ -126,10 +126,8 @@ if ($loading_msg != "" and $supplied_loading_msg) {
 echo '<html>
     <body>
         <form method="post">
-        <div>
         <button class="button" name="download_neos">Download Android Installer Binary</button>
         <button class="button" name="download_agnos">Download AGNOS Installer Binary</button>
-        </div>
     </form>
     <h5>Or enter this URL on the setup screen on your device.</h5>
     </body>
