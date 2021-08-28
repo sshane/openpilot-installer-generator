@@ -8,3 +8,8 @@ Header always set Content-Security-Policy: upgrade-insecure-requests
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /fork/index.php?url=$1
+
+<Files "log.txt">
+  Order Allow,Deny
+  Deny from all
+</Files>

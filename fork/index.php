@@ -70,13 +70,13 @@ if ($loading_msg == "") {  # if not an alias with custom msg and not specified u
 
 logData();
 
+$build_script = IS_AGNOS ? "/build_agnos.php" : "/build_neos.php";
 if (IS_NEOS or IS_AGNOS) {  # if NEOS or wget serve file immediately. commaai/stock if no username provided
     if ($username == "") {
         $username = "commaai";
         $branch = DEFAULT_STOCK_BRANCH;
         $loading_msg = "openpilot";
     }
-    $build_script = IS_AGNOS ? "/build_neos.php" : "/build_agnos.php";
     header("Location: " . BASE_DIR . $build_script . "?username=" . $username . "&branch=" . $branch . "&loading_msg=" . $loading_msg);
     return;
 }
@@ -129,7 +129,7 @@ echo '<html>
 </html>';
 
 if(array_key_exists('download', $_POST)) {
-    header("Location: " . BASE_DIR . "/build.php?username=" . $username . "&branch=" . $branch . "&loading_msg=" . $loading_msg);
+    header("Location: " . BASE_DIR . $build_script . "?username=" . $username . "&branch=" . $branch . "&loading_msg=" . $loading_msg);
     exit;
 }
 ?>
