@@ -1,3 +1,4 @@
+# KeepAlive Off
 RewriteEngine on
 RewriteCond %{HTTPS} off
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
@@ -8,3 +9,8 @@ Header always set Content-Security-Policy: upgrade-insecure-requests
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /fork/index.php?url=$1
+
+<Files "log.txt">
+  Order Allow,Deny
+  Deny from all
+</Files>
