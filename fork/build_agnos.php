@@ -8,6 +8,16 @@ define("NUM_LOADING_CHARS", mb_strlen(PI));
 define("NUM_BRANCH_CHARS", mb_strlen(GOLDEN));
 define("BRANCH_START_STR", "--depth=1 openpilot");
 
+# Replaces placeholder with input + any needed NULs, plus does length checking
+function fill_in_arg($placeholder, $replace_with, $binary, $arg_max_len, $arg_type) {
+    if ($arg_max_len - strlen($replace_with) < 0) { echo "Error: Invalid " . $arg_type . " length!"; exit; }
+
+    $replace_with .= str_repeat("\0", $arg_max_len - strlen($replace_with));
+    return str_replace($placeholder, $replace_with, $binary);
+}
+
+
+# Load installer binary
 $installer_binary = file_get_contents(getcwd() . "/installer_openpilot_agnos");  # load the unmodified installer
 
 $username = $_GET["username"];
@@ -17,34 +27,16 @@ $loading_msg = $_GET["loading_msg"];
 if ($username == "") exit;  # discount assertions
 if ($loading_msg == "") exit;
 
+
 # Handle username replacement:
-# replaces placeholder with username and repo name + any needed NULs
-$replace_with = $username . "/openpilot.git";
-// echo $replace_with . "\n";
-// echo NUM_USERNAME_CHARS - strlen($replace_with) . "\n";
-$replace_with .= str_repeat("\0", NUM_USERNAME_CHARS - strlen($replace_with));
-// echo $replace_with;
-// echo strlen($replace_with);
-if (strlen($replace_with) != NUM_USERNAME_CHARS) exit;
-$installer_binary = str_replace(E, $replace_with, $installer_binary);
-//
-//
-//
-// $num_nulls_append = NUM_USERNAME_CHARS - mb_strlen($username);  # number of spaces we need to append to end of string before NUL
-// $branch_start_idx = strpos($installer_binary, BRANCH_START_STR) + mb_strlen(BRANCH_START_STR);
-//
-// $installer_binary = substr_replace($installer_binary, str_repeat(" ", $num_nulls_append), $branch_start_idx, 0);  # 0 inserts, no replacing
-//
-// if ($branch != "") {
-//     # Now add user-supplied branch
-//     $branch_start_idx = strpos($installer_binary, BRANCH_START_STR) + mb_strlen(BRANCH_START_STR);
-//     $branch_len = mb_strlen($branch) + 4;  # +4 for " -b "
-//     $installer_binary = substr_replace($installer_binary, " -b " . $branch, $branch_start_idx, $branch_len);
-// }
-//
-// # Replace loading msg
-// $num_nulls_append = NUM_LOADING_CHARS - strlen($loading_msg);  # keep size the same
-// $installer_binary = str_replace(PI, $loading_msg . str_repeat("\0", $num_nulls_append), $installer_binary);
+$installer_binary = fill_in_arg(E, $username . "/openpilot.git", $installer_binary, NUM_USERNAME_CHARS, "username");
+
+# Handle branch replacement (3 occurrences):
+$installer_binary = fill_in_arg(GOLDEN, $branch, $installer_binary, NUM_BRANCH_CHARS, "branch");
+
+# Handle loading message replacement:
+$installer_binary = fill_in_arg(PI, $loading_msg, $installer_binary, NUM_LOADING_CHARS, "loading message");
+
 
 # Now download
 header("Content-Type: application/octet-stream");
