@@ -36,4 +36,4 @@ If you want to specify a custom loading message but use the default branch (not 
 [And here's the diff and a branch you can check out to build it on your EON/C2.](https://github.com/sshane/openpilot/compare/6f703eaf4e0de0cbd61d30cb8468004d2949298f...sshane:installer)
 
 ---
-Idea by nelsonjchen on the [openpilot Discord](https://discord.comma.ai/)!
+Idea by [nelsonjchen](https://github.com/nelsonjchen) on the [openpilot Discord](https://discord.comma.ai/)!
