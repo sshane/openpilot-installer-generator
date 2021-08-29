@@ -52,7 +52,7 @@ class Alias {
 # Handle aliases
 $aliases = [new Alias("dragonpilot-community", "devel-i18n", ["dragonpilot", "dp"], "", "dragonpilot"),
             new Alias("commaai", DEFAULT_STOCK_BRANCH, ["stock", "commaai"], "", "openpilot"),
-            new Alias("sshane", "stock_additions", ["shane", "smiskol", "sa", "sshane"], "", "Stock Additions")];
+            new Alias("sshane", "SA-master", ["shane", "smiskol", "sa", "sshane"], "", "Stock Additions")];
 foreach ($aliases as $al) {
     if (in_array($username, $al->aliases)) {
         $username = $al->name;
@@ -105,7 +105,7 @@ echo '<h3 style="position: absolute; bottom: 0; left: 0; width: 100%; text-align
 if ($username == "") {
     echo '<h3 style="color: #30323D;">🎉 now supports comma three! 🎉<h3>';
     echo "</br><h2>Enter this URL on your device during setup with the format:</h2>";
-    echo "<h2><a href='" . BASE_DIR . "/sshane/stock_additions'><span>" . WEBSITE_URL . BASE_DIR . "/username/branch</span></a></h2>";
+    echo "<h2><a href='" . BASE_DIR . "/sshane/SA-master'><span>" . WEBSITE_URL . BASE_DIR . "/username/branch</span></a></h2>";
     echo "</br><h3>Or complete the request on your desktop to download a custom installer.</h3>";
     exit;
 }
