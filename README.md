@@ -35,4 +35,4 @@ If you want to specify a custom loading message but use the default branch (not 
 - [Source code for AGNOS installer](/source/installer_source_agnos.cc)
 
 ---
-Idea by [nelsonjchen](https://github.com/nelsonjchen) on the [openpilot Discord](https://discord.comma.ai/)!
+[Idea](https://discord.com/channels/469524606043160576/524594418628558878/827726757201051658) by [nelsonjchen](https://github.com/nelsonjchen) on the [comma.ai community Discord](https://discord.comma.ai/)!
