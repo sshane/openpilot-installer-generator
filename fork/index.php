@@ -4,8 +4,10 @@ error_reporting(E_ALL ^ E_WARNING);
 # Constants
 define("USER_AGENT", $_SERVER['HTTP_USER_AGENT']);
 define("IS_NEOS", str_contains(USER_AGENT, "NEOSSetup"));
-define("IS_AGNOS", (str_contains(USER_AGENT, "Wget") or str_contains(USER_AGENT, "AGNOSSetup")));
-define("DEFAULT_STOCK_BRANCH", "release2");
+define("IS_AGNOS", str_contains(USER_AGENT, "AGNOSSetup"));
+define("IS_WGET", str_contains(USER_AGENT, "Wget"));
+# Use release2 if NEOS, else release3 (careful! wget assumes comma three)
+define("DEFAULT_STOCK_BRANCH", IS_NEOS ? "release2" : "release3");
 
 define("WEBSITE_URL", "https://smiskol.com");
 define("BASE_DIR", "/" . basename(__DIR__));
@@ -15,8 +17,8 @@ function logData() {
     global $username;
     global $branch;
     date_default_timezone_set('America/Chicago');
-    $data = array("IP" => $_SERVER['REMOTE_ADDR'], "url" => $url, "username" => $username, "branch" => $branch, "is_neos" => IS_NEOS, "is_agnos" => IS_AGNOS, "user_agent" => USER_AGENT, "date" => date("Y-m-d_H:i:s",time()));
 
+    $data = array("IP" => $_SERVER['REMOTE_ADDR'], "url" => $url, "username" => $username, "branch" => $branch, "is_neos" => IS_NEOS, "is_agnos" => IS_AGNOS, "is_wget" => IS_WGET, "user_agent" => USER_AGENT, "date" => date("Y-m-d_H:i:s",time()));
     $data = json_encode($data);
 
     $fp = fopen("log.txt", "a");
@@ -71,7 +73,7 @@ if ($loading_msg == "") {  # if not an alias with custom msg and not specified u
 logData();
 
 $build_script = IS_NEOS ? "/build_neos.php" : "/build_agnos.php";
-if (IS_NEOS or IS_AGNOS) {  # if NEOS or wget serve file immediately. commaai/stock if no username provided
+if (IS_NEOS or IS_AGNOS or IS_WGET) {  # if NEOS or wget serve file immediately. commaai/stock if no username provided
     if ($username == "") {
         $username = "commaai";
         $branch = DEFAULT_STOCK_BRANCH;
