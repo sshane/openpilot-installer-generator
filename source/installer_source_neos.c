@@ -23,6 +23,7 @@
 #define BRAND openpilot
 #endif
 
+
 #define STR(X) #X
 #define STR2(X) STR(X)
 #define PASTE(A, B) A ## B
