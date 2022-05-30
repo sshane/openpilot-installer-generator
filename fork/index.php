@@ -52,7 +52,7 @@ class Alias {
 }
 
 # Handle aliases
-$aliases = [new Alias("dragonpilot-community", "0.8.13", ["dragonpilot", "dp"], "", "dragonpilot"),
+$aliases = [new Alias("dragonpilot-community", "DEFAULT_STOCK_BRANCH", ["dragonpilot", "dp"], "", "dragonpilot"),
             new Alias("commaai", DEFAULT_STOCK_BRANCH, ["stock", "commaai"], "", "openpilot"),
             new Alias("sshane", "SA-master", ["shane", "smiskol", "sa", "sshane"], "", "Stock Additions")];
 foreach ($aliases as $al) {
